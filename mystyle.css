@@ -1,0 +1,12 @@
+.box
+{
+    width: 10vw;
+    height: 10vw;
+    background-color: bisque;
+    margin: .1vw;
+}
+
+.rowline
+{
+    display: flex;
+}
