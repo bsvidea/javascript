@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body
+        {
+            font-size: 2em;
+        }
+        button{
+            font-size: 1.5em;
+        }
+    </style>
+    <script>
+        var qty=0;
+        function incre()
+        {
+            qty++;
+            var x=document.getElementById("quantity");
+            x.innerText=qty;
+        }
+        function decre()
+        {
+            qty--;
+            var x=document.getElementById("quantity");
+            x.innerText=qty;
+        }
+    </script>
+</head>
+<body>
+    <label>Brownie</label>
+    <button onclick="decre()">-</button>
+    <span id="quantity">0</span>
+    <button onclick="incre()">+</button>
+</body>
+</html>
