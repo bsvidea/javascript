@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function addtask()
+        {
+            var obj=document.createElement('p');
+            var txt=document.getElementById("description");
+            obj.innerText=txt.value;
+            document.getElementById("tasklist").appendChild(obj);
+            txt.value="";
+            txt.focus();
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <label>
+            Description
+        </label>
+        <input type="text" id="description">
+        <button onclick="addtask()">Add Task</button>
+    </div>
+    <div id="tasklist">
+
+    </div>
+</body>
+</html>
