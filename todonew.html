@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input,button{
+            font-size: 1.1em;
+        }
+        #inputdiv
+        {
+            width: 40vw;
+            height: 4%;
+            background-color: bisque;
+            margin: auto;
+            padding:2vw;
+            text-align: center;
+            font-size: 1.2em;
+        }
+        #tasklist
+        {
+            width: 30vw;
+            height: 30vw;
+            background-color: coral;
+            margin: auto;
+            margin-top:2vw;
+        }
+        .task
+        {
+            width: 26vw; 
+            height: 2vw;
+            margin: auto;
+            background-color: darkkhaki;
+            display: flex;
+            margin-top: .2vw;
+            margin-bottom: .2vw;
+            border: 1px solid white;
+            font-weight: bold;
+        }
+        span
+        {
+            padding:.4vw;
+            border: 1px solid black;
+            background-color: bisque;
+            color:black;
+        }
+    </style>
+    <script>
+        removetask=()=>
+        {
+             var obj=event.target.parentElement;
+             document.getElementById("tasklist").removeChild(obj);
+
+        }
+        addtask=()=>
+        {
+            var des=document.getElementById('descript');
+
+            var newobj=document.createElement('div');
+            newobj.className='task';
+            var txt=document.createElement('span');
+            var btn=document.createElement('button');
+            btn.addEventListener('click',removetask);
+            txt.innerText=des.value;
+            btn.innerText="X";
+            newobj.appendChild(txt);
+            newobj.appendChild(btn);
+
+
+            document.getElementById("tasklist").appendChild(newobj);
+        }
+    </script>
+</head>
+<body>
+    <div id="inputdiv">
+        <label>Task Description</label>
+        <input type="text" id="descript">
+        <button onclick="addtask()">Add Task</button>
+    </div>
+    <div id="tasklist">
+
+    </div>
+</body>
+</html>
