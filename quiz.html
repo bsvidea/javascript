@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .options
+        {
+            width: 40vw;
+            height: 4vw;
+            background-color: goldenrod;
+            text-align: center;
+            font-size: 1.2em;
+            margin: .3vw;
+            border-radius: 1vw;
+            line-height: 4vw;
+            cursor: pointer;
+        }
+        #questionbox
+        {
+            font-size: 1.4em;
+            background-color: darkseagreen;
+            font-weight: bold;
+            padding:1vw;
+        }
+        .selected
+        {
+            background-color: black;
+            color:white;
+        }
+    </style>
+    <script src="quiz.js"></script>
+    <script>
+        var num=0;
+        var old=0;
+        function showQuestion()
+        {
+            if(old>0)
+            {
+                document.getElementById('option'+old).classList.remove('selected');
+            }
+            
+            var que=quizQuestions[num];
+            document.getElementById("questionbox").innerText=que['question'];
+
+            document.getElementById("option1").innerText=que['options'][0];
+            document.getElementById("option2").innerText=que['options'][1];
+            document.getElementById("option3").innerText=que['options'][2];
+            document.getElementById("option4").innerText=que['options'][3];
+            
+
+            num++;
+        }
+        function makeselected(num)
+        {
+            if(old>0)
+            {
+                document.getElementById('option'+old).classList.remove('selected');
+            }
+            document.getElementById("option"+num).classList.add('selected');
+            old=num;
+        }
+    </script>
+</head>
+<body>
+    <div id="questionbox">
+    </div>
+
+    <div id="option1" class="options" onclick="makeselected(1)"></div>
+    <div id="option2" class="options" onclick="makeselected(2)"></div>
+    <div id="option3" class="options" onclick="makeselected(3)"></div>
+    <div id="option4" class="options" onclick="makeselected(4)"></div>
+    <div>
+        <button onclick="showQuestion()">Next</button>
+    </div>
+</body>
+</html>
