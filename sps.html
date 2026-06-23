@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    img{
+        width: 15vw;
+        height: 20vw;
+    }
+    .selected
+    {
+        border:.2vw solid black;
+    }
+</style>
+<script>
+    var imgs=['stone.png','paper.png','scissor.png'];
+
+    function check(user)
+    {
+        document.getElementById("img0").className="";
+        document.getElementById("img1").className="";
+        document.getElementById("img2").className="";
+        
+        document.getElementById("img"+user).className="selected";
+        
+        var rnd=parseInt(Math.random()*3);
+        var x=document.getElementById('computer');
+        x.src=imgs[rnd];
+        if(user==rnd)
+        {
+            document.getElementById("result").innerText='DRAW';
+        }
+        else if(user==0 && computer==2)
+        {
+            document.getElementById("result").innerText='YOU WIN';
+        }
+        else if(user==1 && computer==0)
+        {
+            document.getElementById("result").innerText='YOU WIN';
+        }
+        else if(user==2 && computer==1)
+        {
+            document.getElementById("result").innerText='YOU WIN';
+        }
+        else
+        {
+            document.getElementById("result").innerText='TRY AGAIN';
+        }
+
+
+    }
+</script>
+</head>
+<body>
+    <div>
+        
+        <div>
+            <input type="radio" name="game" onclick=check(0)>
+            <img src="stone.png" id="img0">           
+            <input type="radio" name="game" onclick=check(1)>
+            <img src="paper.png" id="img1">           
+            <input type="radio" name="game" onclick=check(2)>
+            <img src="scissor.png" id="img2">           
+        </div>
+        <div>
+            <img src="" id="computer">
+        </div>
+        <h2 id="result"></h2>
+    </div>
+</body>
+</html>
