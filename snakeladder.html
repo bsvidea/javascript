@@ -5,99 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        #left
-        {
-            width:60vw;
-            background-color: darkkhaki;
-            height: 95vh;
+        body{
+            background-color: aqua;
         }
-        #right
+        #leftdiv
         {
-            width:35vw;
-            height: 95vh;
-            background-color: coral;
-            text-align: center;
+            background-color: white;
+            width: 70vw;
+            height:95vh;
+            padding-left: 10vw;
         }
-        button{
+        #rightdiv
+        {
+            height:95vh;
+            background-color: bisque;
+            width: 25vw;
+        }
+        #game
+        {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .mybox
+        {
+            width: 4vw;
+            height: 4vw;
+            background-color: cadetblue;
+            margin: .1vw;
             font-size: 1.2em;
-            margin: 1vw;
-        }
-        #rolled{
-            font-size: 3em;
+            font-weight: bold;
         }
         .rows
         {
             display: flex;
         }
-        .cols
-        {
-            width: 4vw;
-            height: 4vw;
-            background-color: rgb(49, 174, 0);
-            margin: .15vw;
-            font-size: 2em;
-            text-align: center;
-        }
-        .currentbox
-        {
-            background-color: red;
+        p{
+            font-size: 2.5em;
         }
     </style>
     <script>
-        var total=0;
-        function rollon()
-        {
-            //(ul-ll+1)*random+ll
-
-            var rnd=parseInt(6*Math.random())+1;
-            document.getElementById("rolled").innerText=rnd;
-            if(total+rnd>100)
-            {
-                return;
-            }
-            if(total>0)
-            {
-                document.getElementById("box"+total).classList.remove('currentbox');            
-            }
-            total+=rnd;
-            document.getElementById("box"+total).classList.add('currentbox');
-        }
-        function setup()
+        function setupgame()
         {
             var num=100;
             for(i=0;i<10;i++)
             {
                 var rowdiv=document.createElement('div');
-                rowdiv.className='rows';
+                rowdiv.className="rows";
                 for(j=0;j<10;j++)
                 {
-                    var obj=document.createElement('div');
-                    obj.className="cols";
-                    obj.innerText=num;
-                    obj.id="box"+num;
+                    var box=document.createElement("div");
+                    box.className="mybox";
+                    box.innerText=num;
                     if(i%2==0)
                         num--;
                     else    
                         num++;
-                    rowdiv.appendChild(obj);
+                    rowdiv.appendChild(box);
                 }
                 if(i%2==0)
                     num-=9;
                 else    
                     num-=11;
-                document.getElementById("left").appendChild(rowdiv);
-
+                document.getElementById("leftdiv").appendChild(rowdiv);
             }
         }
-
+        function rollthedice()
+        {
+            var num=parseInt(6*Math.random()+1);
+            document.getElementById("rollednum").innerText=num;
+        }
     </script>
 </head>
-<body onload="setup()">
-    <div style="display: flex;">
-        <div id="left"></div>
-        <div id="right">
-            <button onclick="rollon()">Roll Now</button>
-            <div id="rolled"></div>
+<body onload="setupgame()">
+    
+    <div id="game">
+        <div id="leftdiv"> </div>
+        <div id="rightdiv">
+            <button onclick="rollthedice()">Roll Dice</button>
+            <p id="rollednum"></p>
         </div>
     </div>
 </body>
