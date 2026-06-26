@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button
+        {
+            width:5vw;
+            height: 5vw;
+            margin: 1vw;
+        }
+        #display
+        {
+            width: 30vw;
+            height: 4vw;
+            background-color: black;
+            margin:auto;
+            color:white;
+            font-size: 1.2em;
+        }
+    </style>
+    <script>
+        function set(num)
+        {
+            
+            var obj=document.getElementById('display');
+            if(num==0 &&  obj.innerText.length==0)
+                return;
+            
+            obj.innerText+=num;
+        }
+        function calculate()
+        {
+            var obj=document.getElementById('display');
+            var value=obj.innerText;
+            obj.innerText=eval(value);
+        }
+        function removechar()
+        {
+            var obj=document.getElementById('display');
+            var txt=obj.innerText;
+            if(txt.length>0)
+            {
+                var ntxt=txt.substr(0,txt.length-1);
+                obj.innerText=ntxt;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div style="width:32vw">
+        <div id="display">
+
+        </div>
+        <div class="row">
+            <button onclick="set(7)">7</button>
+            <button onclick="set(8)">8</button>
+            <button onclick="set(9)">9</button>
+            <button onclick="set('+')">+</button>
+        </div>
+        <div class="row">
+            <button onclick="set(4)">4</button>
+            <button onclick="set(5)">5</button>
+            <button onclick="set(6)">6</button>
+            <button onclick="set('-')">-</button>
+        </div>
+        <div class="row">
+            <button onclick="set(1)">1</button>
+            <button onclick="set(2)">2</button>
+            <button onclick="set(3)">3</button>
+            <button onclick="set('*')">*</button>
+        </div>       
+        <div class="row">
+            <button onclick="set(0)">0</button>
+            <button onclick="removechar()">x</button>
+            <button onclick="calculate()">=</button>
+            <button onclick="set('/')">/</button>
+        </div>         
+    </div>
+</body>
+</html>
