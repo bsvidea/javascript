@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #circle
+        {
+            width: 5vw;
+            height: 5vw;
+            background-color: blueviolet;
+            border-radius: 2.5vw;
+            position: absolute;
+        }
+    </style>
+    <script>
+        var upper=90;
+        var lower=10;
+        var score=0;
+        function startgame()
+        {
+
+            setInterval(updateposition,1000);
+        }
+        function updateposition()
+        {
+            var xpos=parseInt((upper-lower+1)*Math.random()+lower);
+            var ypos=parseInt((upper-lower+1)*Math.random()+lower);
+            var obj=document.getElementById("circle");
+            obj.style.top=ypos+"vh";
+            obj.style.left=xpos+"vw";
+        }
+        function updatescore()
+        {
+            score++;
+            document.getElementById("score").innerText=score;
+        }
+    </script>
+</head>
+<body onload="startgame()">
+    <div id="circle" onclick="updatescore()"></div>
+    <div id="score"> </div>
+</body>
+</html>
