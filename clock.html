@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #clock
+        {
+            width:30vw;
+            height: 30vw;
+            background-image: url("clock.png");
+            margin: auto;
+            background-size: cover;
+        }
+        #seconds
+        {
+            width: .2vw;
+            height: 7vw;
+            margin-left: 14.9vw;
+            background-color: red;
+            top: 8vw;
+            display: block;
+            position: absolute;
+            transform-origin: bottom;
+        }
+         #minutes
+        {
+            width: .3vw;
+            height: 7vw;
+            margin-left: 14.85vw;
+            background-color: black;
+            top: 8vw;
+            display: block;
+            position: absolute;
+            transform-origin: bottom;
+        }
+    </style>
+    <script>
+        function updatetime()
+        {
+            setInterval(settime,1000);
+        }
+        function settime()
+        {
+            var dt=new Date();
+            var cs=dt.getSeconds();
+            var cm=dt.getMinutes();
+
+            var obj=document.getElementById("seconds");
+            obj.style.rotate=(cs*6)+"deg";
+            var obj1=document.getElementById("minutes");
+            obj1.style.rotate=(cm*6)+"deg";
+            
+
+        }
+    </script>
+</head>
+<body onload="updatetime()">
+    <div id="clock">
+        <div id="seconds"></div>
+        <div id="minutes"></div>
+    </div>
+</body>
+</html>
