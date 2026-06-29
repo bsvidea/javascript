@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #wheel
+        {
+            width: 25vw;
+            height: 25vw;
+            background-image: url("spin.png");
+            background-size: cover;
+            margin: auto;
+        }
+        
+    </style>
+    <script>
+        var degree=1;
+        var intervalid;
+        var times=0;
+        function rotate(num)
+        {
+            times=0;
+            intervalid=setInterval(startrotate,50);
+        }
+        function startrotate()
+        {
+            var obj=document.getElementById("wheel").style.rotate=degree+"deg";
+            degree+=5;
+            var rnd=parseInt((100-10+1)*Math.random()+10);
+            if(rnd%10==0)
+            {   
+                times++;
+                if(times==5)
+                    clearInterval(intervalid);
+            }
+                
+        }
+    </script>
+</head>
+<body>
+
+    <div id="wheel">
+
+    </div>
+    <div style="margin: auto;text-align: center;">
+        <button type="button" aria-label="Rotate Anticlockwise" onclick=rotate(-1)>
+            &#10226; 
+        </button>
+        <button type="button" aria-label="Rotate Clockwise" onclick="rotate(1)">
+            &#10227; 
+        </button>
+    </div>
+    <p id="dtxt"></p>
+</body>
+</html>
