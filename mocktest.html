@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="quiz.js"></script>
+    <style>
+        #maindiv
+        {
+            display: flex;
+            justify-content: space-around;
+        }
+        #leftdiv
+        {
+            width: 65vw;
+        }
+        #rightdiv
+        {
+            width: 30vw;
+        }
+        .options
+        {
+            background-color: darkgrey;
+            width: 40vw;
+            height: 5vw;
+            margin-top: 1vw;
+            text-align: center;
+            font-size: 1.3em;
+        }
+        #questiontext
+        {
+            width:60vw;
+            background-color: goldenrod;
+            height:10vw;
+            font-size: 2em;
+            padding:1vw;
+        }
+        .qnos
+        {
+            width: 3vw;
+            height: 3vw;
+            background-color: green;
+            color:white;
+            font-size: 1.2em;
+            text-align: center;
+            border-radius: 1.5vw;
+            margin: .2vw;
+            display: inline-block;
+            line-height: 3vw;
+        }
+        .qnos:hover{
+            background-color: black;
+        }
+        #questionnos
+        {
+            background-color: darkkhaki;
+            padding:1vw;
+        }
+        .selectedanswer
+        {
+            background-color: blueviolet;
+        }
+    </style>
+    <script>
+        var n=quizQuestions.length;
+        var selected=0;
+        var selectedanswers=Array(n).fill(0);
+        function showquestion()
+        {
+            clearanswer();
+            var x=event.target.id;
+            selected=parseInt(x.substr(1,5));
+            var currentquestion=quizQuestions[selected];
+            // console.warn(currentquestion);
+            document.getElementById("questiontext").innerText=currentquestion['question'];
+            document.getElementById("option1").innerText=currentquestion['options'][0];
+            document.getElementById("option2").innerText=currentquestion['options'][1];
+            document.getElementById("option3").innerText=currentquestion['options'][2];
+            document.getElementById("option4").innerText=currentquestion['options'][3];
+            var x=selectedanswers[selected];
+            
+            if(x>0)
+            {
+                document.getElementById("option"+x).classList.add('selectedanswer')   ;
+            }
+        }
+        function setup()
+        {
+            for(var i=0;i<n;i++)
+            {
+                var obj=document.createElement("div");
+                obj.className="qnos";
+                obj.innerText=i+1;
+                obj.id="q"+i;
+                obj.addEventListener('click',showquestion);
+                document.getElementById("questionnos").appendChild(obj);
+            }
+        }
+        function shownext()
+        {
+            if(selected<n-1)
+                selected++;
+            var currentquestion=quizQuestions[selected];
+            // console.warn(currentquestion);
+            document.getElementById("questiontext").innerText=currentquestion['question'];
+            document.getElementById("option1").innerText=currentquestion['options'][0];
+            document.getElementById("option2").innerText=currentquestion['options'][1];
+            document.getElementById("option3").innerText=currentquestion['options'][2];
+            document.getElementById("option4").innerText=currentquestion['options'][3];
+             var x=selectedanswers[selected];
+            
+            if(x>0)
+            {
+                document.getElementById("option"+x).classList.add('selectedanswer')   ;
+            }
+        }
+        function clearanswer()
+        {
+            for(var i=1;i<5;i++)
+                document.getElementById("option"+i).classList.remove('selectedanswer');
+
+        }
+        function makeselect(num)
+        {
+            clearanswer();
+            document.getElementById("option"+num).classList.add('selectedanswer');
+            selectedanswers[selected]=num;
+        }
+    </script>
+</head>
+<body onload="setup()">
+    <div id="maindiv">
+        <div id="leftdiv">
+            <div id="questiontext">
+
+            </div>
+            <div>
+                <div onclick="makeselect(1)" id="option1" class="options"></div>
+                <div onclick="makeselect(2)" id="option2" class="options"></div>
+                <div onclick="makeselect(3)" id="option3" class="options"></div>
+                <div onclick="makeselect(4)" id="option4" class="options"></div>
+            </div>
+            <button onclick="shownext()">Next</button>
+        </div>
+        <div id="rightdiv">
+            <div id="questionnos">
+
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
