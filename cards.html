@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        #card
+        {
+            width:8vw;
+            height:15vw;
+            border:.2vw solid black;
+            border-radius:.5vw;
+            margin:auto;
+        }
+        #shade
+        {
+            font-size:7em;
+            height:6vw;
+            width:8vw;
+            text-align:center;
+            margin:auto;
+        }
+        #number1, #number2
+        {
+            font-size:2em;
+            height:2vw;
+            width:8vw;
+        }
+        #number1
+        {
+            text-align:left;
+        }
+        #number2
+        {
+            text-align:right;
+            margin-top:4vw;
+        }
+        .red
+        {
+            color:red;
+        }
+        .black
+        {
+            color:black;
+        }
+    </style>
+    <script>
+        function showcard()
+        {
+            var data=['A','1','2','3','4','5','6','7','8','9','10','J','Q','K'];
+            var shades=['&#x2660;','&#x2663;','&#x2666;','&#x2665;'];
+
+            var n1=parseInt(13*Math.random());
+            var n2=parseInt(4*Math.random());
+            document.getElementById("shade").innerHTML=shades[n2];
+            document.getElementById("number1").innerHTML=data[n1];
+            document.getElementById("number2").innerHTML=data[n1];
+            if(n2>1)
+            {
+                document.getElementById("shade").classList.add('red');
+                document.getElementById("shade").classList.remove('black');
+            }
+            else
+            {
+                document.getElementById("shade").classList.remove('red');
+                document.getElementById("shade").classList.add('black');
+
+            }
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <div  id="card">
+            <div id="number1"></div>
+            <div id="shade"></div>
+            <div id="number2"></div>
+        </div>
+        <div style="text-align:center;padding:1vw">
+        <button onclick="showcard()">
+            Show Card
+        </button>
+        </div>
+    </div>
+</body>
+</html>
